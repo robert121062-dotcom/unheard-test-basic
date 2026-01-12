@@ -1,0 +1,39 @@
+﻿node.exe : 2026-01-10T13:17:58.332Z expo:telemetry Recording 1 event(s)
+위치 줄:1 문자:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-01-10T13:1...ding 1 event(s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-01-10T13:17:58.439Z expo:env C:\unheard\test-basic\.env does not exist, skipping this env file
+2026-01-10T13:17:58.439Z expo:env C:\unheard\test-basic\.env.development does not exist, skipping this env file
+2026-01-10T13:17:58.440Z expo:env C:\unheard\test-basic\.env.local does not exist, skipping this env file
+2026-01-10T13:17:58.440Z expo:env C:\unheard\test-basic\.env.development.local does not exist, skipping this env file
+2026-01-10T13:17:58.571Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/splash-icon.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#ffffff',
+  dark: { backgroundColor: '#000000' }
+}
+! No git repo found in current directory
+??Use git to track file changes before running commands that modify project files.
+Git status is dirty but the command will continue because the terminal is not interactive.
+- Clearing android
+??Cleared android code
+2026-01-10T13:17:58.788Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/splash-icon.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#ffffff',
+  dark: { backgroundColor: '#000000' }
+}
+2026-01-10T13:17:58.797Z expo:prebuild-config:expo-splash-screen:ios config: {
+  image: './assets/images/splash-icon.png',
+  imageWidth: 200,
+  resizeMode: 'contain',
+  backgroundColor: '#ffffff',
+  dark: { backgroundColor: '#000000' }
+}
+- Creating native directory (./android)
+2026-01-10T13:17:58.802Z expo:prebuild:resolveLocalTemplate Using local template from Expo package: C:\unheard\test-basic\node_modules\expo\template.tgz
