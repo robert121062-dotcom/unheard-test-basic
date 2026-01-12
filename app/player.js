@@ -14,7 +14,7 @@ import {
 
 // 🔥 여기만 너 Render 서버 주소로 바꾸면 됨
 // 예시: const API_BASE_URL = 'https://unheard-server.onrender.com';
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://unheard-api.onrender.com';
 
 // 시간 포맷 함수 (밀리초 → MM:SS)
 function formatTime(millis) {

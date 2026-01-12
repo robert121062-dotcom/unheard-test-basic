@@ -6,7 +6,7 @@ import { useDrops } from '../context/DropsContext';
 
 const BG = '#050509';
 const ACCENT = '#f97316';
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://unheard-api.onrender.com';
 
 export default function HomeScreen() {
   const router = useRouter();
