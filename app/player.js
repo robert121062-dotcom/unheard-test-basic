@@ -12,7 +12,9 @@ import {
   View,
 } from 'react-native';
 
-const API_BASE_URL = 'http://localhost:3000';
+// 🔥 여기만 너 Render 서버 주소로 바꾸면 됨
+// 예시: const API_BASE_URL = 'https://unheard-server.onrender.com';
+const API_BASE_URL = 'https://unheard-api.onrender.com/tracks';
 
 // 시간 포맷 함수 (밀리초 → MM:SS)
 function formatTime(millis) {
@@ -39,7 +41,7 @@ export default function PlayerScreen() {
     console.log('[player.js] 최종 trackCode:', trackCode);
   }
 
-  // 3) 트랙 정보 상태 (이제 서버에서 가져옴)
+  // 3) 트랙 정보 상태 (서버에서 가져옴)
   const [track, setTrack] = useState(null);
   const [isLoadingTrack, setIsLoadingTrack] = useState(true);
   const [trackError, setTrackError] = useState(null);
@@ -56,11 +58,14 @@ export default function PlayerScreen() {
         setIsLoadingTrack(true);
         setTrackError(null);
 
-        console.log('[player.js] 서버에서 트랙 요청:', `${API_BASE_URL}/tracks/${trackCode}`);
-        const res = await fetch(`${API_BASE_URL}/tracks/${trackCode}`);
+        const url = `${API_BASE_URL}/tracks/${trackCode}`;
+        console.log('[player.js] 서버에서 트랙 요청:', url);
+
+        const res = await fetch(url);
         if (!res.ok) {
           throw new Error(`Server error: ${res.status}`);
         }
+
         const data = await res.json();
         console.log('[player.js] 서버에서 트랙 로드됨:', data);
         setTrack(data);
@@ -87,7 +92,10 @@ export default function PlayerScreen() {
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setIsOnline(state.isConnected);
-      console.log('[player.js] 네트워크 상태:', state.isConnected ? '온라인' : '오프라인');
+      console.log(
+        '[player.js] 네트워크 상태:',
+        state.isConnected ? '온라인' : '오프라인'
+      );
     });
 
     return () => unsubscribe();
@@ -206,7 +214,9 @@ export default function PlayerScreen() {
           <Text style={styles.headerTitle}>UNHEARD SESSION</Text>
         </View>
         <ActivityIndicator color="#f9fafb" />
-        <Text style={[styles.hintText, { marginTop: 12 }]}>트랙 정보를 불러오는 중...</Text>
+        <Text style={[styles.hintText, { marginTop: 12 }]}>
+          트랙 정보를 불러오는 중...
+        </Text>
       </View>
     );
   }
@@ -255,8 +265,15 @@ export default function PlayerScreen() {
 
       {/* 앨범 아트 스타일 박스 */}
       <View style={[styles.albumArt, { borderColor: track.coverColor }]}>
-        <View style={[styles.albumArtInner, { backgroundColor: `${track.coverColor}20` }]}>
-          <View style={[styles.colorDot, { backgroundColor: track.coverColor }]} />
+        <View
+          style={[
+            styles.albumArtInner,
+            { backgroundColor: `${track.coverColor}20` },
+          ]}
+        >
+          <View
+            style={[styles.colorDot, { backgroundColor: track.coverColor }]}
+          />
           <Text style={styles.albumArtText}>UNHEARD</Text>
           <Text style={styles.albumArtSubtext}>EXCLUSIVE SESSION</Text>
         </View>
@@ -289,13 +306,19 @@ export default function PlayerScreen() {
             <View
               style={[
                 styles.progressFill,
-                { width: `${(position / duration) * 100}%`, backgroundColor: track.coverColor },
+                {
+                  width: `${(position / duration) * 100}%`,
+                  backgroundColor: track.coverColor,
+                },
               ]}
             />
             <View
               style={[
                 styles.progressHandle,
-                { left: `${(position / duration) * 100}%`, backgroundColor: track.coverColor },
+                {
+                  left: `${(position / duration) * 100}%`,
+                  backgroundColor: track.coverColor,
+                },
               ]}
             />
           </View>
@@ -313,8 +336,12 @@ export default function PlayerScreen() {
             <ActivityIndicator color="#0f172a" size="large" />
           ) : (
             <>
-              <Text style={styles.playButtonIcon}>{isPlaying ? '⏸' : '▶'}</Text>
-              <Text style={styles.playButtonText}>{isPlaying ? 'PAUSE' : 'PLAY'}</Text>
+              <Text style={styles.playButtonIcon}>
+                {isPlaying ? '⏸' : '▶'}
+              </Text>
+              <Text style={styles.playButtonText}>
+                {isPlaying ? 'PAUSE' : 'PLAY'}
+              </Text>
             </>
           )}
         </TouchableOpacity>
@@ -325,12 +352,16 @@ export default function PlayerScreen() {
         <View style={styles.errorBox}>
           <Text style={styles.errorTitle}>PLAYBACK ERROR</Text>
           <Text style={styles.errorMessage}>{error}</Text>
-          <Text style={styles.errorHint}>Check browser console (F12) for details</Text>
+          <Text style={styles.errorHint}>
+            Check browser console (F12) for details
+          </Text>
         </View>
       )}
 
       {/* 힌트 텍스트 */}
-      <Text style={styles.hintText}>스트리밍 세션은 일시적입니다 · 다운로드 불가</Text>
+      <Text style={styles.hintText}>
+        스트리밍 세션은 일시적입니다 · 다운로드 불가
+      </Text>
     </View>
   );
 }
