@@ -1,18 +1,35 @@
 // app/drops.js
 import { useRouter } from 'expo-router';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDrops } from '../context/DropsContext';
-import { tracksByCode } from '../data/tracks';
 
 const BG = '#050509';
 const ACCENT = '#f97316';
+const API_BASE_URL = 'http://localhost:3000';
 
 export default function DropsOverviewScreen() {
   const router = useRouter();
   const { addDrop } = useDrops();
 
-  // tracksByCode를 배열로 변환
-  const allTracks = Object.values(tracksByCode);
+  const [allTracks, setAllTracks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/tracks`);
+        const data = await res.json();
+        setAllTracks(data);
+      } catch (err) {
+        console.error('트랙 로드 실패:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTracks();
+  }, []);
 
   const handleTrackPress = (trackCode) => {
     // 세션 추가하고 플레이어로 이동
@@ -51,15 +68,19 @@ export default function DropsOverviewScreen() {
         </Text>
       </View>
 
-      <FlatList
-        data={allTracks}
-        keyExtractor={(item) => item.code}
-        renderItem={renderItem}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.listContent}
-        showsVerticalScrollIndicator={false}
-      />
+      {isLoading ? (
+        <ActivityIndicator color={ACCENT} style={{ marginTop: 40 }} />
+      ) : (
+        <FlatList
+          data={allTracks}
+          keyExtractor={(item) => item.code}
+          renderItem={renderItem}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.listContent}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 }

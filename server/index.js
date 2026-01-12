@@ -17,16 +17,35 @@ const tracksByCode = {
     title: 'ROOFTOP CYPHER (DEMO)',
     artist: 'UNHEARD CREW',
     coverColor: '#f97316',
-    audioUrl:
-      'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3',
+    audioUrl: 'https://actions.google.com/sounds/v1/alarms/bugle_tune.ogg',
   },
   'UNHD-DEMO-002': {
     code: 'UNHD-DEMO-002',
     title: 'SUBWAY REVERB TAPE',
     artist: 'MIDNIGHT LINE',
     coverColor: '#22c55e',
-    audioUrl:
-      'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg',
+    audioUrl: 'https://actions.google.com/sounds/v1/alarms/digital_watch_alarm_long.ogg',
+  },
+  'UNHD-DEMO-003': {
+    code: 'UNHD-DEMO-003',
+    title: 'MIDNIGHT FREESTYLE',
+    artist: 'SHADOW MC',
+    coverColor: '#8b5cf6',
+    audioUrl: 'https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg',
+  },
+  'UNHD-DEMO-004': {
+    code: 'UNHD-DEMO-004',
+    title: 'STREET VIBES',
+    artist: 'URBAN COLLECTIVE',
+    coverColor: '#ec4899',
+    audioUrl: 'https://actions.google.com/sounds/v1/foley/swoosh.ogg',
+  },
+  'UNHD-DEMO-005': {
+    code: 'UNHD-DEMO-005',
+    title: 'UNDERGROUND ANTHEM',
+    artist: 'THE BASEMENT',
+    coverColor: '#06b6d4',
+    audioUrl: 'https://actions.google.com/sounds/v1/cartoon/pop.ogg',
   },
 };
 
